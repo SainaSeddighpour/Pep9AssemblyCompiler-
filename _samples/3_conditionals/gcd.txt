@@ -1,0 +1,22 @@
+Br          program 
+a:          .Block 2 
+b:          .Block 2 
+program:    DECI a, d 
+            DECI b, d
+testW:      LDWA a, d 
+            CPWA b, d 
+            BREQ end_W 
+testIF:     LDWA a, d 
+            CPWA b, d
+            BELE else
+if:         LDWA a, d
+            SUBA b, d 
+            STWA a, d 
+            BR end_IF 
+else:       LDWA b, d 
+            SUBA a, d
+            STWA b, d
+            BR end_IF
+end_IF:     BR testW
+end_W:      DECO a, d 
+            .END 

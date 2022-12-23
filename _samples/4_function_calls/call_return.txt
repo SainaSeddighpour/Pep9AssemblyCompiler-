@@ -1,0 +1,29 @@
+
+BR      Program
+;   global variables
+_UNIV:      .EQUATE 42
+x:          .BLOCK 2
+result:     .BLOCK 2 
+;   local variables 
+value:      .EQUATE 2 
+lresult:    .EQUATE 0 
+retVal:     .EQUATE 6
+my_func:    LDWA value, s
+            SUBSP 2, i
+            ADDA _UNIV, i
+            STWA lresult, d
+            LDWA lresult, d 
+            STWA retVal, s 
+            ADDSP 2, i 
+            RET 
+Program:    DECI x, d
+            SUBSP 4, i ; push retVal and x 
+            LDWA x, d
+            STWA 0, s   
+            CALL my_func
+            ADDSP 2, i
+            LDWA 0, s
+            STWA result, d
+            ADDSP 2, i 
+            DECO result, d
+            .END
